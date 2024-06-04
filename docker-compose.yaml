@@ -27,5 +27,14 @@ services:
         }'
     stdin_open: true
     tty: true
+  mysql-exporter:
+    image: prom/mysqld-exporter
+    command: 
+     - --config.my-cnf=/cfg/.my.cnf
+     - --mysqld.address=mysqldb:3306
+    volumes:
+      - "./.my.cnf:/cfg/.my.cnf"
+    ports:
+      - 9104:9104
 volumes:
   db:
