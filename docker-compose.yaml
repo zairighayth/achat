@@ -24,11 +24,13 @@ services:
         "spring.datasource.password" : null,
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
         "spring.jpa.hibernate.ddl-auto" : "update",
-        "management.endpoints.web.exposure.include"="health,info,prometheus"
+        "management.endpoints.web.exposure.include" : "health,info,prometheus"
 
         }'
     stdin_open: true
     tty: true
+  front-achat:
+    image: zairighayth/front-achat:1.0.0 
   mysql-exporter:
     image: prom/mysqld-exporter
     command: 
@@ -38,5 +40,6 @@ services:
       - "./.my.cnf:/cfg/.my.cnf"
     ports:
       - 9104:9104
+  
 volumes:
   db:
